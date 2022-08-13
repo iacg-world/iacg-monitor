@@ -31,7 +31,6 @@ export function upload(data, options = {}, isSendBeacon = false) {
     '&visitor_id=' +
     visitorId
   const src = 'http://craft:7001/monitor/upload?' + params
-  console.log(data, src, eventType)
   if (!isSendBeacon) {
     let img = new Image()
     img.src = src

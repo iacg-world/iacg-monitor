@@ -7,8 +7,19 @@
   </head>
   <body iacg-page-id="page123456">
     <script>
-      window.IacgCliMonitor.collect()
-      window.IacgCliMonitor.upload()
+      window.IacgCliMonitor.registerBeforeCreateParams(() => {
+        console.log('beforeCreateParams')
+      })
+      window.IacgCliMonitor.registerBeforeUpload(() => {
+        console.log('beforeUpload')
+      })
+      window.IacgCliMonitor.registerAfterUpload(() => {
+        console.log('afterUpload')
+      })
+      window.IacgCliMonitor.registerOnError(e => {
+        console.log('onError', e)
+      })
+      window.IacgCliMonitor.sendPV()
     </script>
   </body>
 </html>
