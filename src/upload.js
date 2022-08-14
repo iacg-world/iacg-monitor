@@ -30,7 +30,7 @@ export function upload(data, options = {}, isSendBeacon = false) {
     userId +
     '&visitor_id=' +
     visitorId
-  const src = 'http://craft:7001/monitor/upload?' + params
+  const src = 'http://iacg:7001/monitor/upload?' + params
   if (!isSendBeacon) {
     let img = new Image()
     img.src = src
