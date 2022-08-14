@@ -1,5 +1,4 @@
 import {
-  collect,
   sendPV,
   registerBeforeCreateParams,
   registerBeforeUpload,
@@ -7,11 +6,11 @@ import {
   registerOnError,
   collectAppear,
   sendExp,
+  sendClick,
 } from './collect'
 import { upload } from './upload'
 
 window.IacgCliMonitor = {
-  collect,
   upload,
   sendPV,
   registerBeforeCreateParams,
@@ -20,4 +19,5 @@ window.IacgCliMonitor = {
   registerOnError,
   collectAppear,
   sendExp,
+  sendClick,
 }

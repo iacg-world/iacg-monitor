@@ -33,7 +33,7 @@ export function registerOnError(fn) {
  * 采集页面的基本信息
  * @export
  */
-export function collect(customData, eventType, isSendBeacon = false, event) {
+function collect(customData, eventType, isSendBeacon = false, event) {
   let appId,
     pageId,
     modId = '',
@@ -132,4 +132,8 @@ export function sendExp(data = {}, e) {
   collect(data, 'EXP', false, e)
 }
 
+// 上报点击埋点
+export function sendClick(data = {}, e) {
+  collect(data, 'CLICK', true, e)
+}
 export default {}
