@@ -62,7 +62,6 @@ export function collect(customData, eventType, isSendBeacon = false, event) {
   timestamp = new Date().getTime()
   ua = window.navigator.userAgent
   currentUrl = window.location.href
-  console.log(appId, pageId, timestamp, ua)
   const params = {
     appId,
     pageId,
@@ -73,7 +72,6 @@ export function collect(customData, eventType, isSendBeacon = false, event) {
     args: JSON.stringify(customData),
   }
   let data = qs.stringify(params)
-  console.log(data)
   if (beforeUpload) {
     data = beforeUpload(data)
   }
@@ -91,9 +89,47 @@ export function collect(customData, eventType, isSendBeacon = false, event) {
   }
 }
 
+/**
+ * 曝光逻辑
+ */
+export function collectAppear() {
+  const appearEvent = new CustomEvent('onAppear')
+  const disappearEvent = new CustomEvent('onDisappear')
+  let ob
+  if (window.IacgCliMonitorObserver) {
+    ob = window.IacgCliMonitorObserver // 只实例化一次
+  } else {
+    ob = new IntersectionObserver(function (e) {
+      e.forEach(d => {
+        if (d.intersectionRatio > 0) {
+          console.log(d.target.className + ' appear')
+          d.target.dispatchEvent(appearEvent)
+        } else {
+          console.log(d.target.className + ' disappear')
+          d.target.dispatchEvent(disappearEvent)
+        }
+      })
+    })
+  }
+  // 维护监听dom队列，批量上传
+  let obList = []
+  const appear = document.querySelectorAll('[appear]') // 找到添加了appear属性的DOM标签
+  for (let i = 0; i < appear.length; i++) {
+    if (!obList.includes(appear[i])) {
+      ob.observe(appear[i])
+      obList.push(appear[i])
+    }
+  }
+  window.IacgCliMonitorObserver = ob
+  window.IacgCliMonitorObserverList = obList
+}
 // 发送PV日志
 export function sendPV() {
   collect({}, 'PV')
+}
+// 上报曝光埋点
+export function sendExp(data = {}, e) {
+  collect(data, 'EXP', false, e)
 }
 
 export default {}

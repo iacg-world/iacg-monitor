@@ -4,8 +4,27 @@
     <title>iacg-cli监控测试</title>
     <meta charset="utf(-8" />
     <meta iacg-app-id="app123456" />
+    <script>
+      function addDom() {
+        const body = document.body
+        const div = document.createElement('div')
+        div.innerHTML = '监控SDK'
+        div.style = 'background-color: purple'
+        div.className = 'new-dom'
+        div.setAttribute('appear', '')
+        body.insertBefore(div, body.firstChild)
+        window.IacgCliMonitor.collectAppear() // 刷新appear监听列表
+      }
+    </script>
   </head>
   <body iacg-page-id="page123456">
+    <button onclick="addDom()">添加DOM</button>
+    <div style="height: 100vh; width: 50vw; background-color: aqua"></div>
+    <div
+      style="height: 10vh; width: 50vw; background-color: purple"
+      appear
+      class="demo1"
+    ></div>
     <script>
       window.IacgCliMonitor.registerBeforeCreateParams(() => {
         console.log('beforeCreateParams')
@@ -20,6 +39,13 @@
         console.log('onError', e)
       })
       window.IacgCliMonitor.sendPV()
+      window.IacgCliMonitor.collectAppear()
+      document
+        .getElementsByClassName('demo1')[0]
+        .addEventListener('onAppear', function (e) {
+          console.log('自定义曝光')
+          window.IacgCliMonitor.sendExp({ a: 1, b: 2 }, e)
+        })
     </script>
   </body>
 </html>
