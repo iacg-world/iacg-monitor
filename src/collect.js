@@ -141,4 +141,14 @@ export function sendClick(data = {}, e) {
 export function sendStayTime(data = {}) {
   collect(data, 'STAY', true)
 }
+
+// 上报性能指标
+export function sendPerf(data = {}) {
+  collect(data, 'PERF', true)
+}
+
+// 上报异常监控
+export function sendError(data = {}) {
+  collect(data, 'ERROR', true)
+}
 export default {}
