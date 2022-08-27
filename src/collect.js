@@ -89,6 +89,20 @@ function collect(customData, eventType, isSendBeacon = false, event) {
   }
 }
 
+let requestIdleCallbackId = null
+function asyncCollect() {
+  requestIdleCallbackId = window.requestIdleCallback(
+    () => {
+      collect(...arguments)
+    },
+    { timeout: 1000 },
+  )
+}
+
+window.onunload = () => {
+  window.cancelIdleCallback(requestIdleCallbackId)
+}
+
 /**
  * 曝光逻辑
  */
@@ -134,7 +148,8 @@ export function sendExp(data = {}, e) {
 
 // 上报点击埋点
 export function sendClick(data = {}, e) {
-  collect(data, 'CLICK', true, e)
+  // collect(data, 'CLICK', true, e)
+  asyncCollect(data, 'CLICK', true, e)
 }
 
 // 上报停留时长埋点
