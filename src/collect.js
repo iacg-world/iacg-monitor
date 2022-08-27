@@ -136,4 +136,9 @@ export function sendExp(data = {}, e) {
 export function sendClick(data = {}, e) {
   collect(data, 'CLICK', true, e)
 }
+
+// 上报停留时长埋点
+export function sendStayTime(data = {}) {
+  collect(data, 'STAY', true)
+}
 export default {}
