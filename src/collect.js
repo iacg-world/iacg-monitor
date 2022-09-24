@@ -1,6 +1,7 @@
 import qs from 'qs'
 
 import { upload } from './upload'
+import { curry } from './utils'
 
 // 参数创建前
 let beforeCreateParams
@@ -95,9 +96,18 @@ function asyncCollect() {
     () => {
       collect(...arguments)
     },
-    { timeout: 1000 },
+    { timeout: 3000 },
   )
 }
+
+function batchCollect(collectionList) {
+  collectionList.forEach(args => {
+    // console.log(...args);
+    asyncCollect(...args)
+  })
+}
+
+const curryAsyncCollection = curry(batchCollect)
 
 window.onunload = () => {
   window.cancelIdleCallback(requestIdleCallbackId)
@@ -149,7 +159,7 @@ export function sendExp(data = {}, e) {
 // 上报点击埋点
 export function sendClick(data = {}, e) {
   // collect(data, 'CLICK', true, e)
-  asyncCollect(data, 'CLICK', true, e)
+  curryAsyncCollection(data, 'CLICK', true, e)
 }
 
 // 上报停留时长埋点
