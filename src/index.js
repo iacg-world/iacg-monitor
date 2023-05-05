@@ -24,17 +24,17 @@ import { upload } from './upload'
 
 // 自动监听停留时长
 window.addEventListener('load', function (e) {
-  window.__IacgCliMonitor_ENTER_TIME = new Date().getTime()
+  window.__IacgMonitor_ENTER_TIME = new Date().getTime()
 })
 
 window.addEventListener('beforeunload', function (e) {
-  if (window.__IacgCliMonitor_ENTER_TIME) {
-    window.__IacgCliMonitor_LEAVE_TIME = new Date().getTime()
+  if (window.__IacgMonitor_ENTER_TIME) {
+    window.__IacgMonitor_LEAVE_TIME = new Date().getTime()
     const stayTime =
-      window.__IacgCliMonitor_LEAVE_TIME - window.__IacgCliMonitor_ENTER_TIME
+      window.__IacgMonitor_LEAVE_TIME - window.__IacgMonitor_ENTER_TIME
     console.log(
-      'window.__IacgCliMonitor_LEAVE_TIME',
-      window.__IacgCliMonitor_LEAVE_TIME,
+      'window.__IacgMonitor_LEAVE_TIME',
+      window.__IacgMonitor_LEAVE_TIME,
     )
     sendStayTime({ stayTime })
   }
@@ -95,7 +95,7 @@ window.onunhandledrejection = function (e) {
   sendError({ stack, message, type: 'promise' })
 }
 
-window.IacgCliMonitor = {
+window.IacgMonitor = {
   upload,
   sendPV,
   registerBeforeCreateParams,

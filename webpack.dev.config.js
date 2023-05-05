@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    'iacg-cli-monitor': path.resolve(__dirname, './src/index.js'),
+    'iacg-monitor': path.resolve(__dirname, './src/index.js'),
   },
   output: {
     filename: '[name].js',
@@ -24,7 +24,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, './examples/index.html'),
-      chunks: ['iacg-cli-monitor'],
+      chunks: ['iacg-monitor'],
       scriptLoading: 'blocking',
       inject: 'head',
     }),

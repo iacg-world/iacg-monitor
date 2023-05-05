@@ -120,8 +120,8 @@ export function collectAppear() {
   const appearEvent = new CustomEvent('onAppear')
   const disappearEvent = new CustomEvent('onDisappear')
   let ob
-  if (window.IacgCliMonitorObserver) {
-    ob = window.IacgCliMonitorObserver // 只实例化一次
+  if (window.IacgMonitorObserver) {
+    ob = window.IacgMonitorObserver // 只实例化一次
   } else {
     ob = new IntersectionObserver(function (e) {
       e.forEach(d => {
@@ -144,8 +144,8 @@ export function collectAppear() {
       obList.push(appear[i])
     }
   }
-  window.IacgCliMonitorObserver = ob
-  window.IacgCliMonitorObserverList = obList
+  window.IacgMonitorObserver = ob
+  window.IacgMonitorObserverList = obList
 }
 // 发送PV日志
 export function sendPV() {

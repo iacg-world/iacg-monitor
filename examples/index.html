@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>iacg-cli监控测试</title>
+    <title>iacg-监控测试</title>
     <meta charset="utf(-8" />
     <meta iacg-app-id="app123456" />
     <script>
       function addDom() {
         const body = document.body
-        window.IacgCliMonitor.sendClick({
+        window.IacgMonitor.sendClick({
           type: 'addDom',
           target: 'new-dom',
         })
@@ -19,12 +19,12 @@
           div.setAttribute('appear', '')
           body.append(div)
         }
-        window.IacgCliMonitor.collectAppear() // 刷新appear监听列表
+        window.IacgMonitor.collectAppear() // 刷新appear监听列表
       }
 
       function onJump(e) {
         // console.log('mod-id', e.getAttribute('iacg-mod-id'))
-        window.IacgCliMonitor.sendClick(
+        window.IacgMonitor.sendClick(
           {
             jumpUrl: 'https://www.baidu.com',
           },
@@ -35,7 +35,7 @@
       function jump() {
         const dom = document.querySelector('.jump')
         // window.location.href = 'https://www.qq.com'
-        window.IacgCliMonitor.sendClick({
+        window.IacgMonitor.sendClick({
           jumpUrl: 'https://www.qq.com',
           target: dom.className,
         })
@@ -60,25 +60,25 @@
       class="demo1"
     ></div> -->
     <script>
-      window.IacgCliMonitor.registerBeforeCreateParams(() => {
+      window.IacgMonitor.registerBeforeCreateParams(() => {
         console.log('beforeCreateParams')
       })
-      window.IacgCliMonitor.registerBeforeUpload(() => {
+      window.IacgMonitor.registerBeforeUpload(() => {
         console.log('beforeUpload')
       })
-      window.IacgCliMonitor.registerAfterUpload(() => {
+      window.IacgMonitor.registerAfterUpload(() => {
         console.log('afterUpload')
       })
-      window.IacgCliMonitor.registerOnError(e => {
+      window.IacgMonitor.registerOnError(e => {
         console.log('onError', e)
       })
-      window.IacgCliMonitor.sendPV()
-      window.IacgCliMonitor.collectAppear()
+      window.IacgMonitor.sendPV()
+      window.IacgMonitor.collectAppear()
       document
         .getElementsByClassName('demo1')[0]
         .addEventListener('onAppear', function (e) {
           console.log('自定义曝光')
-          window.IacgCliMonitor.sendExp({ a: 1, b: 2 }, e)
+          window.IacgMonitor.sendExp({ a: 1, b: 2 }, e)
         })
     </script>
   </body>
