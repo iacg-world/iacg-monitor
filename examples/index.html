@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>iacg-监控测试</title>
-    <meta charset="utf(-8" />
+    <meta charset="utf-8" />
     <meta iacg-app-id="app123456" />
     <script>
       function addDom() {
@@ -14,7 +14,7 @@
         for (let i = 0; i < 1000; i++) {
           const div = document.createElement('div')
           div.innerHTML = '监控SDK'
-          // div.style = 'background-color: purple'
+          div.style = 'background-color: purple'
           div.className = 'new-dom'
           div.setAttribute('appear', '')
           body.append(div)
@@ -60,26 +60,29 @@
       class="demo1"
     ></div> -->
     <script>
-      window.IacgMonitor.registerBeforeCreateParams(() => {
-        console.log('beforeCreateParams')
-      })
-      window.IacgMonitor.registerBeforeUpload(() => {
-        console.log('beforeUpload')
-      })
-      window.IacgMonitor.registerAfterUpload(() => {
-        console.log('afterUpload')
-      })
-      window.IacgMonitor.registerOnError(e => {
-        console.log('onError', e)
-      })
-      window.IacgMonitor.sendPV()
-      window.IacgMonitor.collectAppear()
-      document
-        .getElementsByClassName('demo1')[0]
-        .addEventListener('onAppear', function (e) {
-          console.log('自定义曝光')
-          window.IacgMonitor.sendExp({ a: 1, b: 2 }, e)
+      window.addEventListener('load', function () {
+        const m = window.IacgMonitor
+        m.registerBeforeCreateParams(function () {
+          console.log('before create params')
         })
+        m.registerBeforeUpload(function (params) {
+          return params + '&custom=1'
+        })
+        m.registerAfterUpload(function (url, data) {
+          console.log(url, data)
+        })
+        m.registerOnError(function (e) {
+          console.log('Erorr!' + e.message)
+        })
+        m.sendPV()
+        m.collectAppear()
+        document
+          .getElementsByClassName('demo1')[0]
+          .addEventListener('onAppear', function (e) {
+            console.log('自定义曝光')
+            m.sendExp({ a: 1, b: 2 }, e)
+          })
+      })
     </script>
   </body>
 </html>

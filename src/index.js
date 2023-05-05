@@ -13,6 +13,11 @@ import {
 } from './collect'
 import { upload } from './upload'
 
+// 自动监听曝光事件
+window.addEventListener('load', function() {
+  collectAppear();
+});
+
 // 全局监听点击事件
 !window.__DisableClickMonitor &&
   window.addEventListener('click', function (e) {
