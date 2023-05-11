@@ -76,12 +76,6 @@
         })
         m.sendPV()
         m.collectAppear()
-        document
-          .getElementsByClassName('demo1')[0]
-          .addEventListener('onAppear', function (e) {
-            console.log('自定义曝光')
-            m.sendExp({ a: 1, b: 2 }, e)
-          })
       })
     </script>
   </body>
