@@ -107,8 +107,6 @@ function batchCollect(collectionList) {
   })
 }
 
-const curryAsyncCollection = curry(batchCollect)
-
 window.onunload = () => {
   window.cancelIdleCallback(requestIdleCallbackId)
 }
@@ -149,7 +147,7 @@ export function collectAppear() {
 }
 // 发送PV日志
 export function sendPV() {
-  collect({}, 'PV')
+  collect({}, 'PV', true)
 }
 // 上报曝光埋点
 export function sendExp(data = {}, e) {
@@ -159,7 +157,7 @@ export function sendExp(data = {}, e) {
 // 上报点击埋点
 export function sendClick(data = {}, e) {
   // collect(data, 'CLICK', true, e)
-  curryAsyncCollection(data, 'CLICK', true, e)
+  asyncCollect(data, 'CLICK', true, e)
 }
 
 // 上报停留时长埋点
