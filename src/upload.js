@@ -30,7 +30,7 @@ export function upload(data, options = {}, isSendBeacon = false) {
     userId +
     '&visitor_id=' +
     visitorId
-  const src = 'http://ip/api/monitor/upload?' + params
+  const src = 'https://api-sc.lc404.cn/api/monitor/upload?' + params
   if (!isSendBeacon) {
     let img = new Image()
     img.src = src
