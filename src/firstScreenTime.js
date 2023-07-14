@@ -1,3 +1,4 @@
+import { modifyFloor } from "./utils";
 
 // firstScreenPaint为首屏加载时间的变量
 let firstScreenPaint = 0;
@@ -6,7 +7,7 @@ let isOnLoaded = false;
 let timer;
 let observer;
 let entries = [];
-
+let navigationStart =  performance.timeOrigin || performance.timing.navigationStart
 function getRenderTime() {
   let startTime = 0;
   entries.forEach((entry) => {
@@ -15,7 +16,7 @@ function getRenderTime() {
     }
   });
   // performance.timing.navigationStart 页面的起始时间
-  return startTime - performance.timing.navigationStart;
+  return modifyFloor(startTime - navigationStart);
 }
 export const checkDOMChange = (callback) => {
   cancelAnimationFrame(timer);
@@ -78,4 +79,5 @@ export const observeFirstScreenPaint = (callback) => {
     characterData: true, // 监听元素的文本是否变化
     attributes: true // 监听元素的属性是否变化
   });
+
 }

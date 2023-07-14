@@ -22,6 +22,8 @@
         window.IacgMonitor.collectAppear() // 刷新appear监听列表
       }
 
+      window.addDom = addDom
+
       function onJump(e) {
         // console.log('mod-id', e.getAttribute('iacg-mod-id'))
         window.IacgMonitor.sendClick(
@@ -44,6 +46,7 @@
   </head>
   <body iacg-page-id="page123456">
     <img src="https://oss.lc404.cn/sharecraft-test/6Vg31v.png" alt="">
+    <img src="" alt="">
     <a
       href=""
       target="_blank"
@@ -62,6 +65,7 @@
     ></div> -->
     <script>
       window.addEventListener('load', function () {
+        window.addDom()
         const m = window.IacgMonitor
         m.registerBeforeCreateParams(function () {
           console.log('before create params')
@@ -77,6 +81,7 @@
         })
         m.sendPV()
         m.collectAppear()
+        window.addDom()
       })
     </script>
   </body>

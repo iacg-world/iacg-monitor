@@ -40,3 +40,7 @@ export const loadInterceptor = callback => {
     callback()
   })
 }
+
+
+// 对数值向下取整
+export const modifyFloor = (num = 0) => Math.floor(num)

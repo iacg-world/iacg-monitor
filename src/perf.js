@@ -1,6 +1,6 @@
 import { sendError, sendPerf } from './collect'
 import { observeFirstScreenPaint } from './firstScreenTime'
-import { loadInterceptor, speedDelay } from './utils'
+import { loadInterceptor, modifyFloor, speedDelay } from './utils'
 let navigationEntry
 /**
  * 导航开始到各个指标点时间的间隔
@@ -42,8 +42,6 @@ export const getNavigationEntryFromPerformanceTiming = () => {
   }
 }
 
-// 对数值向下取整
-const modifyFloor = (num = 0) => Math.floor(num)
 /**
  * 首字节导航请求时间,TTFB：在浏览器切换页面时创建，从导航开始到该请求返回 HTML
  * @returns {number}
