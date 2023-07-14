@@ -261,7 +261,7 @@ const getNavigation = () => {
 export const initPerf = async() => {
   observeFirstScreenPaint((time) => {
     sendPerf({
-      fsp: time,
+      fsp: time > 0 ? time: getLoaded(),
     })
    })
   getFID().then(time => {
