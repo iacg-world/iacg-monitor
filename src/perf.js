@@ -78,9 +78,42 @@ const getLoaded = () => {
     throw err
   }
 }
+/**
+ * 页面资源列表
+ */
+const getPerformanceEntryList = () => {
+  try {
+    if (window.performance && window.performance.getEntries) {
+      const EntryList = window.performance.getEntries()
+      const resourceInfo = {
+        js: [],
+        css: [],
+        cssInline: [],
+        img: [],
+      }
+      const alias = {
+        script: 'js',
+        link: 'css',
+        css: 'cssInline',
+        img: 'img',
+      }
+      EntryList.forEach(({ initiatorType, name, transferSize, duration }) => {
+        const type = alias[initiatorType]
+        if (type && duration > 1) {
+          const infoType = type
+          resourceInfo[infoType].push({
+            name,
+            size: transferSize,
+            time: duration,
+          })
+        }
+      })
+      return resourceInfo
+    }
+  } catch (err) {
+    throw err
   }
 }
-
 /**
  * PerformanceObserver 监听性能类型。兼容性：IE不支持，safari 12.1及以上，安卓 5及以上
  * @param type
@@ -228,9 +261,11 @@ const getNavigation = () => {
 
 export const initPerf = () => {
   loadInterceptor(async () => {
-    const ttfb = getTTFB();
-    const ready = getReady();
-    const loaded = getLoaded();
+    const ttfb = getTTFB()
+    const ready = getReady()
+    const loaded = getLoaded()
+    const entryMap = getPerformanceEntryList();
+
     getFID().then(time => {
       sendPerf({
         fid: time,
@@ -248,8 +283,7 @@ export const initPerf = () => {
       ttfb,
       ready,
       loaded,
+      entryMap,
     })
   })
-
-
 }
