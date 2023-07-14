@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iacg-监控测试</title>
+    <meta charset="utf-8" />
+    <meta iacg-app-id="app123456" />
+    <script>
+      function addDom() {
+        const body = document.body
+        window.IacgMonitor.sendClick({
+          type: 'addDom',
+          target: 'new-dom',
+        })
+        for (let i = 0; i < 1000; i++) {
+          const div = document.createElement('div')
+          div.innerHTML = '监控SDK'
+          div.style = 'background-color: purple'
+          div.className = 'new-dom'
+          div.setAttribute('appear', '')
+          body.append(div)
+        }
+        window.IacgMonitor.collectAppear() // 刷新appear监听列表
+      }
+
+      function onJump(e) {
+        // console.log('mod-id', e.getAttribute('iacg-mod-id'))
+        window.IacgMonitor.sendClick(
+          {
+            jumpUrl: 'https://www.baidu.com',
+          },
+          { target: e },
+        )
+      }
+
+      function jump() {
+        const dom = document.querySelector('.jump')
+        // window.location.href = 'https://www.qq.com'
+        window.IacgMonitor.sendClick({
+          jumpUrl: 'https://www.qq.com',
+          target: dom.className,
+        })
+      }
+    </script>
+  </head>
+  <body iacg-page-id="page123456">
+    <img src="https://oss.lc404.cn/sharecraft-test/6Vg31v.png" alt="">
+    <a
+      href=""
+      target="_blank"
+      onClick="onJump(this)"
+      iacg-mod-id="jump-to-baidu"
+    >
+      跳转到baidu
+    </a>
+    <div class="jump" onClick="jump()">跳转到腾讯</div>
+    <button onclick="addDom()" class="addDom">添加DOM</button>
+    <!-- <div style="height: 100vh; width: 50vw; background-color: aqua"></div>
+    <div
+      style="height: 10vh; width: 50vw; background-color: purple"
+      appear
+      class="demo1"
+    ></div> -->
+    <script>
+      window.addEventListener('load', function () {
+        const m = window.IacgMonitor
+        m.registerBeforeCreateParams(function () {
+          console.log('before create params')
+        })
+        m.registerBeforeUpload(function (params) {
+          return params + '&custom=1'
+        })
+        m.registerAfterUpload(function (url, data) {
+          console.log(url, data)
+        })
+        m.registerOnError(function (e) {
+          console.log('Erorr!' + e.message)
+        })
+        m.sendPV()
+        m.collectAppear()
+      })
+    </script>
+  </body>
+</html>
