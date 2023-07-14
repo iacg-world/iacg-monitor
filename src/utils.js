@@ -10,3 +10,32 @@ export function curry(func, funcLen = 10) {
     }
   }
 }
+
+export const speedDelay = 1000; // load之后1s延迟
+// load最大等待10秒
+const maxLoadDelay = 10000
+const maxLoad = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(1)
+    }, maxLoadDelay)
+  })
+}
+
+export const domLoad = () => {
+  return new Promise(resolve => {
+    if (document.readyState === 'complete') {
+      resolve(1)
+    } else {
+      window.addEventListener('load', function () {
+        resolve(1)
+      })
+    }
+  })
+}
+// 页面load或最大等待时间10秒，触发回调
+export const loadInterceptor = callback => {
+  Promise.race([maxLoad(), domLoad()]).then(() => {
+    callback()
+  })
+}
