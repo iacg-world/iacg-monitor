@@ -103,7 +103,7 @@ const getPerformanceEntryList = () => {
           resourceInfo[infoType].push({
             name,
             size: transferSize,
-            time: duration,
+            time: modifyFloor(duration)
           })
         }
       })
