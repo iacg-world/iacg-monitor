@@ -22,6 +22,7 @@ const maxLoad = () => {
   })
 }
 
+// 页面dom加载完成
 export const domLoad = () => {
   return new Promise(resolve => {
     if (document.readyState === 'complete') {
