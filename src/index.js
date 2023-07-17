@@ -11,7 +11,7 @@ import {
   sendError,
   sendPerf,
 } from './collect'
-import { initError } from './error';
+import { initError, initVueError } from './error';
 import { initPerf } from './perf';
 import { upload } from './upload'
 
@@ -64,4 +64,5 @@ window.IacgMonitor = {
   sendStayTime,
   sendError,
   sendPerf,
+  initVueError
 }
