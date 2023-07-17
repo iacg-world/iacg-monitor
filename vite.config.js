@@ -3,12 +3,13 @@ import { resolve } from 'path'
 import { createHtmlPlugin } from 'vite-plugin-html'
 const NODE_ENV = process.env.NODE_ENV
 const isProduction = NODE_ENV === 'production'
+
 export default defineConfig({
   build: {
     outDir: 'dist-vite',
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, 'src/index.js'),
+      entry: resolve(__dirname, 'packages/core/dist/index.js'),
       name: 'iacg-monitor',
       // the proper extensions will be added
       fileName: 'iacg-monitor',
@@ -29,7 +30,7 @@ export default defineConfig({
           {
             filename: 'iacg-monitor',
             template: 'index.html',
-            entry: 'src/index.js',
+            entry: 'packages/core/dist/index.js',
           },
         ],
       }),

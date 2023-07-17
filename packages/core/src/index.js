@@ -10,10 +10,10 @@ import {
   sendStayTime,
   sendError,
   sendPerf,
-} from './collect'
-import { initError, initVueError } from './error';
-import { initPerf } from './perf';
-import { upload } from './upload'
+} from '@iacg-monitor/collect'
+import { initError, initVueError } from '@iacg-monitor/error';
+import { initPerf } from '@iacg-monitor/perf';
+import { upload } from '@iacg-monitor/upload'
 
 // 自动监听曝光事件
 window.addEventListener('load', function() {

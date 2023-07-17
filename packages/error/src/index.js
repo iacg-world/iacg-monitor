@@ -1,7 +1,7 @@
 import {
   sendError,
-} from './collect'
-import { parseStackFrames } from './utils';
+} from '@iacg-monitor/collect'
+import { parseStackFrames } from '@iacg-monitor/utils';
 
 
 // 获取报错组件名
