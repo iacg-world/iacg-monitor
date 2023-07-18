@@ -1,8 +1,8 @@
 {
   "name": "@iacg-monitor/core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,11 +10,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.js"
+  },
   "dependencies": {
     "@iacg-monitor/collect": "workspace:^",
-    "@iacg-monitor/error": "workspace:^1.0.0",
+    "@iacg-monitor/error": "workspace:^1.1.0",
     "@iacg-monitor/perf": "workspace:^",
     "@iacg-monitor/upload": "workspace:^",
-    "@iacg-monitor/utils": "workspace:^1.0.0"
+    "@iacg-monitor/utils": "workspace:^1.1.0"
   }
 }
