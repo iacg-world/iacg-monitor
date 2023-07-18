@@ -11,6 +11,7 @@ export default defineConfig({
       // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, 'packages/core/dist/index.js'),
       name: 'iacg-monitor',
+      formats: ['es', 'umd'],
       // the proper extensions will be added
       fileName: 'iacg-monitor',
     },
@@ -30,7 +31,7 @@ export default defineConfig({
           {
             filename: 'iacg-monitor',
             template: 'index.html',
-            entry: 'packages/core/dist/index.js',
+            entry: 'packages/core/src/index.js',
           },
         ],
       }),
