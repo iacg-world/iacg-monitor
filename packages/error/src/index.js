@@ -81,3 +81,12 @@ export const initError = () => {
         sendError({ stack, message, type: '' })
     }
 };
+
+export default class ErrorPlugin {
+  constructor() {
+    this.customApis= {
+      initVueError
+    }
+    this.init = initError
+  }
+}

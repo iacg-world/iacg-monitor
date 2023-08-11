@@ -379,8 +379,17 @@
     });
   };
 
+  class PerfPlugin {
+    constructor() {
+      this.init = initPerf;
+    }
+  }
+
+  exports.default = PerfPlugin;
   exports.getNavigationEntryFromPerformanceTiming = getNavigationEntryFromPerformanceTiming;
   exports.initPerf = initPerf;
   exports.observe = observe;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));

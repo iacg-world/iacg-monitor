@@ -82,8 +82,20 @@
       }
   };
 
+  class ErrorPlugin {
+    constructor() {
+      this.customApis= {
+        initVueError
+      };
+      this.init = initError;
+    }
+  }
+
+  exports.default = ErrorPlugin;
   exports.formatComponentName = formatComponentName;
   exports.initError = initError;
   exports.initVueError = initVueError;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));

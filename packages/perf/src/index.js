@@ -293,3 +293,9 @@ export const initPerf = async() => {
     })
   })
 }
+
+export default class PerfPlugin {
+  constructor() {
+    this.init = initPerf
+  }
+}

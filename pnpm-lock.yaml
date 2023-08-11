@@ -80,6 +80,18 @@ importers:
 
   packages/utils: {}
 
+  packages/web:
+    dependencies:
+      '@iacg-monitor/core':
+        specifier: workspace:^
+        version: link:../core
+      '@iacg-monitor/error':
+        specifier: workspace:^
+        version: link:../error
+      '@iacg-monitor/perf':
+        specifier: workspace:^
+        version: link:../perf
+
 packages:
 
   /@babel/code-frame@7.22.5:
@@ -1624,7 +1636,7 @@ packages:
   /has-property-descriptors@1.0.0:
     resolution: {integrity: sha512-62DVLZGoiEBDHQyqG4w9xCuZ7eJEwNmJRWw2VY84Oedb7WFcA27fiEVe8oUQx9hAUJ4ekurquucTGwsyO1XGdQ==}
     dependencies:
-      get-intrinsic: 1.1.2
+      get-intrinsic: 1.2.1
     dev: true
 
   /has-proto@1.0.1:
