@@ -1,6 +1,6 @@
 {
   "name": "@iacg-monitor/core",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@iacg-monitor/collect": "workspace:^",
-    "@iacg-monitor/error": "workspace:^2.0.0",
+    "@iacg-monitor/error": "workspace:^2.0.1",
     "@iacg-monitor/perf": "workspace:^",
     "@iacg-monitor/upload": "workspace:^",
-    "@iacg-monitor/utils": "workspace:^2.0.0"
+    "@iacg-monitor/utils": "workspace:^2.0.1"
   }
 }
