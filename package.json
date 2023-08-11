@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "upload": "node ./uploadToOSS.js",
-    "dev": "vite",
-    "build": "vite build --mode lib ",
+    "dev": "node ./dev.js",
+    "build": "node ./build.js",
     "preview": "pnpm run pk && vite build",
     "pk": "rollup -c --bundleConfigAsCjs",
     "changeset": "changeset",

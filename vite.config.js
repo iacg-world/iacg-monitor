@@ -1,20 +1,24 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import { getCommandValue } from './utills'
 const NODE_ENV = process.env.NODE_ENV
 const isProduction = NODE_ENV === 'production'
-console.log(isProduction, NODE_ENV, process.env)
+
+
+const projectName = getCommandValue('projectName')
+console.log(isProduction, NODE_ENV, projectName)
 
 export default defineConfig({
   build: {
     outDir: 'dist-vite',
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, 'packages/web/src/index.js'),
-      name: 'iacg-monitor',
+      entry: resolve(__dirname, `packages/${projectName}/src/index.js`),
+      name: `iacg-monitor-${projectName}`,
       formats: ['es', 'umd'],
       // the proper extensions will be added
-      fileName: 'iacg-monitor',
+      fileName: `iacg-monitor-${projectName}`,
     },
     // rollupOptions: {
     //   output: {
@@ -30,9 +34,9 @@ export default defineConfig({
         minify: true,
         pages: [
           {
-            filename: 'iacg-monitor-web',
+            filename: `iacg-monitor-${projectName}`,
             template: 'index.html',
-            entry: 'packages/web/src/index.js',
+            entry: `packages/${projectName}/src/index.js`,
           },
         ],
       }),
