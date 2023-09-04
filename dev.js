@@ -2,7 +2,7 @@ const { spawn }  = require("child_process");
 
 console.log(process.argv)
 
-const projectName = process.argv[2]
+const projectName = process.argv[2] || 'web'
 
 
 const child_process = spawn(

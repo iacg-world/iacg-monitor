@@ -6,5 +6,6 @@ const monitor = new IacgMonitor()
 
 monitor.use(ErrorPlugin)
 monitor.use(PerfPlugin)
+monitor.init()
 
 window.IacgMonitor = monitor.IacgMonitor

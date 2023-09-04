@@ -14,6 +14,7 @@ import {
 import { upload } from '@iacg-monitor/upload'
 
 export default class MonitorCore {
+  plugins = []
   constructor(options = {projectName: 'input your project name'}) {
     this.projectName = options.projectName
     this.IacgMonitor = {
@@ -64,10 +65,11 @@ export default class MonitorCore {
         sendStayTime({ stayTime })
       }
     })
+    this.plugins.forEach(plugin => plugin.init())
   }
   use(Plugin) {
     const plugin = new Plugin()
-    plugin.init()
+    this.plugins.push(plugin)
     if (plugin.customApis) {
       this.IacgMonitor = {
         ...this.IacgMonitor,
