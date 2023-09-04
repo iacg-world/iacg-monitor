@@ -1,5 +1,11 @@
 # @iacg-monitor/core
 
+## 2.0.2
+
+### Patch Changes
+
+- perf: plugins init
+
 ## 2.0.1
 
 ### Patch Changes

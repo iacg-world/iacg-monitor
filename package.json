@@ -11,7 +11,7 @@
     "pk": "rollup -c --bundleConfigAsCjs",
     "changeset": "changeset",
     "packages-version": "changeset version",
-    "pre-publish": "pnpm run changeset && pnpm run packages-version",
+    "prepublish": "pnpm run changeset && pnpm run packages-version",
     "publish": "changeset publish --registry=https://registry.npmjs.com/"
   },
   "keywords": [],
