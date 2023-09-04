@@ -1,6 +1,6 @@
-import { sendError, sendPerf } from './collect'
+import { sendError, sendPerf } from '@iacg-monitor/collect'
 import { observeFirstScreenPaint } from './firstScreenTime'
-import { loadInterceptor, modifyFloor, speedDelay } from './utils'
+import { loadInterceptor, modifyFloor, speedDelay } from '@iacg-monitor/utils'
 let navigationEntry
 /**
  * 导航开始到各个指标点时间的间隔
@@ -292,4 +292,10 @@ export const initPerf = async() => {
       entryMap,
     })
   })
+}
+
+export default class PerfPlugin {
+  constructor() {
+    this.init = initPerf
+  }
 }

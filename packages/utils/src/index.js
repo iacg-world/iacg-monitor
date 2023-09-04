@@ -44,3 +44,26 @@ export const loadInterceptor = callback => {
 
 // 对数值向下取整
 export const modifyFloor = (num = 0) => Math.floor(num)
+
+
+// 对每一个错误详情，生成一串编码
+export const getErrorUid = (input) => {
+  return window.btoa(unescape(encodeURIComponent(input)));
+};
+
+// 限制只追溯10个
+const STACKTRACE_LIMIT = 10;
+// 解析错误堆栈
+export function parseStackFrames(error) {
+  const { stack } = error;
+  // 无 stack 时直接返回
+  if (!stack) return [];
+  const frames = [];
+  for (const line of stack.split('\n').slice(1)) {
+    const frame = parseStackLine(line);
+    if (frame) {
+      frames.push(frame);
+    }
+  }
+  return frames.slice(0, STACKTRACE_LIMIT);
+}

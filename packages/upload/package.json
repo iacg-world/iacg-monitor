@@ -1,0 +1,17 @@
+{
+  "name": "@iacg-monitor/upload",
+  "version": "2.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.js"
+  },
+  "license": "ISC"
+}

@@ -1,4 +1,4 @@
-import { modifyFloor } from "./utils";
+import { modifyFloor } from "@iacg-monitor/utils";
 
 // firstScreenPaint为首屏加载时间的变量
 let firstScreenPaint = 0;
