@@ -15,7 +15,7 @@ const pathJoin = (dirName, fileName) => {
 
 // 设置环境变量
 dotenv.config({ path: path.resolve(__dirname, '.env') })
-const publicPath = path.resolve(__dirname, './dist')
+const publicPath = path.resolve(__dirname, './dist-vite')
 
 // 新建一个实例
 const client = new OSS({
@@ -28,7 +28,7 @@ const client = new OSS({
 async function run() {
   // 从文件夹获取对应的文件列表
   const publicFiles = fs.readdirSync(publicPath)
-  const files = publicFiles.filter(f => f === 'iacg-monitor.js')
+  const files = publicFiles.filter(f => f.includes('iacg-monitor-'))
   const res = await Promise.all(
     files.map(async fileName => {
       const savedOSSPath = pathJoin('h5-assets', fileName)
